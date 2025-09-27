@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Asser Hassan - Physiotherapy</title>
+    <link href="output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Custom CSS will go here if needed, but Tailwind is primary */
+      body {
+        font-family: "Poppins", sans-serif; /* A premium and clean font */
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif; /* For headings */
+      }
+      .hero-background {
+        background-image: url("https://source.unsplash.com/random/1600x900/?physiotherapy,healthcare"); /* Placeholder image */
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed; /* Parallax effect */
+        position: relative;
+      }
+      .gradient-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to right top,
+          rgba(59, 130, 246, 0.7),
+          rgba(16, 185, 129, 0.7)
+        ); /* Tailwind blue-500 to green-500 */
+      }
+
+      /* Custom scroll animations */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .fade-in-up.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .fade-in {
+        opacity: 0;
+        transition: opacity 0.8s ease-out;
+      }
+      .fade-in.animate {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body class="text-gray-800">
+    <!-- Header / Hero Section -->
+    <header
+      id="hero"
+      class="relative min-h-screen flex items-center justify-center text-white"
+    >
+      <!-- Background Image -->
+      <img
+        src="./assets/header.jpg"
+        alt="Physiotherapy"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+
+      <!-- Gradient Overlay -->
+      <div class="gradient-overlay absolute inset-0 bg-opacity-0"></div>
+
+      <!-- Content -->
+      <div class="relative z-10 text-center px-6">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-4">
+          Dr. Asser Hassan
+        </h1>
+        <p class="text-2xl md:text-3xl font-light mb-6">Physiotherapy Doctor</p>
+        <p class="max-w-2xl mx-auto text-lg md:text-xl mb-10">
+          Restoring Movement, Relieving Pain, Enhancing Life.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#contact"
+            class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-blue-600 px-8 py-3 rounded-full font-semibold shadow-lg transition"
+            >Contact Now</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Bar (Fixed on scroll - will add with JS) -->
+    <!-- Navbar -->
+    <nav
+      id="navbar"
+      class="fixed top-0 left-0 right-0 bg-white shadow-lg z-50 hidden"
+    >
+      <div
+        class="container mx-auto px-6 flex justify-between items-center py-4"
+      >
+        <!-- Logo -->
+        <a href="#" class="text-2xl font-bold text-blue-600"
+          >Dr. Asser Hassan</a
+        >
+
+        <!-- Burger button (mobile) -->
+        <button
+          id="menuBtn"
+          class="md:hidden text-gray-800 text-2xl focus:outline-none"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Links (desktop) -->
+        <div class="hidden md:flex gap-6">
+          <a href="#hero" class="hover:text-blue-600 transition">Home</a>
+          <a href="#about" class="hover:text-blue-600 transition">About</a>
+          <a href="#services" class="hover:text-blue-600 transition"
+            >Services</a
+          >
+          <a href="#schedule" class="hover:text-blue-600 transition"
+            >Schedule</a
+          >
+          <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Side Drawer Menu (mobile only) -->
+    <div
+      id="sideMenu"
+      class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform -translate-x-full transition-transform duration-300 z-50"
+    >
+      <div class="flex justify-between items-center p-4 border-b">
+        <span class="text-xl font-bold text-blue-600">Menu</span>
+        <button id="closeBtn" class="text-gray-800 text-2xl">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <nav class="flex flex-col gap-4 p-6">
+        <a href="#hero" class="hover:text-blue-600 transition">Home</a>
+        <a href="#about" class="hover:text-blue-600 transition">About</a>
+        <a href="#services" class="hover:text-blue-600 transition">Services</a>
+        <a href="#schedule" class="hover:text-blue-600 transition">Schedule</a>
+        <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+      </nav>
+    </div>
+
+    <!-- Overlay -->
+    <div
+      id="overlay"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden z-40"
+    ></div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 bg-gray-50">
+      <div
+        class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+      >
+        <div class="relative flex justify-center fade-in-up">
+          <div
+            class="relative bg-white p-4 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 ease-in-out before:content-[''] before:absolute before:-top-4 before:-left-4 before:w-full before:h-full before:rounded-2xl before:border-2 before:border-blue-400 before:-z-10 after:content-[''] after:absolute after:-bottom-4 after:-right-4 after:w-full after:h-full after:rounded-2xl after:border-2 after:border-blue-200 after:-z-10"
+          >
+            <img
+              src="./assets/Dr.jpg"
+              alt="Dr. [Doctor's Name]"
+              class="rounded-2xl object-cover"
+              width="500"
+              height="500"
+            />
+          </div>
+        </div>
+
+        <div class="fade-in-up">
+          <h2 class="text-4xl font-bold text-gray-900 mb-6 leading-tight">
+            About Dr. Asser Hassan
+          </h2>
+          <p class="text-gray-700 text-lg mb-6 leading-relaxed">
+            With over
+            <span class="font-bold text-blue-600">3 years of experience</span>,
+            Dr. Asser is a dedicated Physiotherapy Doctor committed to providing
+            personalized and effective rehabilitation. Graduating with honors
+            from Delta University for Science and Technology , Dr. Asser holds
+            certifications in Manual Therapy, Sports Injuries.
+          </p>
+          <p class="text-gray-700 text-lg mb-8 leading-relaxed">
+            Specializing in orthopedic rehabilitation, neurological
+            physiotherapy, chronic pain management our approach combines
+            evidence-based practices with compassionate care to help you achieve
+            your health and wellness goals.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-10">
+            <div
+              class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 fade-in-up"
+              style="transition-delay: 0.2s"
+            >
+              <i class="fas fa-user-md text-4xl text-blue-500 mb-4"></i>
+              <h3
+                class="text-3xl font-bold text-gray-900 mb-2 counter"
+                data-target="3"
+              >
+                0
+              </h3>
+              <p class="text-gray-600">Years of Experience</p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 fade-in-up"
+              style="transition-delay: 0.4s"
+            >
+              <i class="fas fa-users text-4xl text-green-500 mb-4"></i>
+              <p class="text-gray-600">over</p>
+              <h3
+                class="text-3xl font-bold text-gray-900 mb-2 counter"
+                data-target="100+"
+              ></h3>
+              <p class="text-gray-600">Patients Treated</p>
+            </div>
+            <div
+              class="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition duration-300 fade-in-up"
+              style="transition-delay: 0.6s"
+            >
+              <i class="fas fa-award text-4xl text-yellow-500 mb-4"></i>
+              <h3
+                class="text-3xl font-bold text-gray-900 mb-2 counter"
+                data-target="98"
+              >
+                0
+              </h3>
+              <p class="text-gray-600">Success Rate (%)</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 md:py-32 bg-blue-50">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center text-gray-900 mb-12 fade-in-up"
+        >
+          Our Physiotherapy Services
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <!-- Service Card 1 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-bone text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Orthopedic Rehabilitation
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Specialized care for pre and post-surgical rehabilitation,
+              fractures, sprains, and chronic joint pain.
+            </p>
+          </div>
+          <!-- Service Card 2 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+            style="transition-delay: 0.2s"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-running text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Sports Injury Management
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Diagnosis, treatment, and prevention of sports-related injuries to
+              get you back in the game.
+            </p>
+          </div>
+          <!-- Service Card 3 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+            style="transition-delay: 0.4s"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-brain text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Neurological Physiotherapy
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Rehabilitation for conditions like stroke, Parkinson's disease,
+              multiple sclerosis, and spinal cord injuries.
+            </p>
+          </div>
+          <!-- Service Card 4 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+            style="transition-delay: 0.6s"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-hand-holding-heart text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Chronic Pain Management
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Holistic approaches to manage and alleviate chronic pain
+              conditions, improving quality of life.
+            </p>
+          </div>
+          <!-- Service Card 5 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+            style="transition-delay: 0.8s"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-child text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Pediatric Physiotherapy
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Specialized therapy for infants, children, and adolescents with
+              developmental or physical challenges.
+            </p>
+          </div>
+          <!-- Service Card 6 -->
+          <div
+            class="bg-white rounded-2xl shadow-xl p-8 transform hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out group fade-in-up"
+            style="transition-delay: 1s"
+          >
+            <div
+              class="text-blue-600 group-hover:text-green-500 transition-colors duration-300 mb-6"
+            >
+              <i class="fas fa-lungs text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold text-gray-900 mb-4">
+              Respiratory Physiotherapy
+            </h3>
+            <p class="text-gray-700 leading-relaxed">
+              Techniques to improve lung function, breathing patterns, and
+              clearance of secretions for respiratory conditions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule / Working Hours Section -->
+    <section id="schedule" class="py-20 md:py-32 bg-white">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-4xl font-bold text-center text-gray-900 mb-12 fade-in-up"
+        >
+          <i class="fas fa-calendar-alt text-blue-600 mr-3"></i>Our Working
+          Hours
+        </h2>
+        <div class="overflow-x-auto fade-in-up">
+          <div class="overflow-x-auto rounded-2xl shadow-xl">
+            <table class="min-w-full bg-white">
+              <thead class="bg-blue-600 text-white">
+                <tr>
+                  <th class="py-4 px-6 text-left text-lg font-semibold">Day</th>
+                  <th class="py-4 px-6 text-left text-lg font-semibold">
+                    Morning Session
+                  </th>
+                  <th class="py-4 px-6 text-left text-lg font-semibold">
+                    Afternoon Session
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-700">
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Saturday</td>
+                  <td class="py-4 px-6">—</td>
+                  <td class="py-4 px-6">10:00 AM - 7:00 PM (Private)</td>
+                </tr>
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Sunday</td>
+                  <td class="py-4 px-6">10:00 AM - 3:00 PM (Clinic)</td>
+                  <td class="py-4 px-6">—</td>
+                </tr>
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Monday</td>
+                  <td class="py-4 px-6">—</td>
+                  <td class="py-4 px-6">10:00 AM - 7:00 PM (Private)</td>
+                </tr>
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Tuesday</td>
+                  <td class="py-4 px-6">10:00 AM - 3:00 PM (Clinic)</td>
+                  <td class="py-4 px-6">—</td>
+                </tr>
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Wednesday</td>
+                  <td class="py-4 px-6">—</td>
+                  <td class="py-4 px-6">10:00 AM - 7:00 PM (Private)</td>
+                </tr>
+                <tr
+                  class="border-b border-gray-100 hover:bg-blue-50 transition duration-200"
+                >
+                  <td class="py-4 px-6 font-medium">Thursday</td>
+                  <td class="py-4 px-6">10:00 AM - 3:00 PM (Clinic)</td>
+                  <td class="py-4 px-6">—</td>
+                </tr>
+                <tr class="bg-gray-100">
+                  <td class="py-4 px-6 font-medium text-red-600" colspan="3">
+                    Friday: Closed
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 bg-blue-50">
+      <div
+        class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12"
+      >
+        <div class="fade-in-up">
+          <h2 class="text-4xl font-bold text-gray-900 mb-8 leading-tight">
+            Get in Touch
+          </h2>
+          <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+            We're here to help you on your journey to recovery. Feel free to
+            reach out to us with any questions or to book an appointment.
+          </p>
+          <div class="space-y-6 mb-10">
+            <div class="flex items-center text-gray-700 text-lg">
+              <i class="fas fa-phone-alt text-blue-600 text-2xl mr-4"></i>
+              <span class="font-medium">Phone:</span>
+              <a
+                href="tel:+01040905211"
+                class="ml-2 hover:text-blue-600 transition duration-300"
+                >01040905211</a
+              >
+            </div>
+            <div class="flex items-center text-gray-700 text-lg">
+              <i class="fas fa-envelope text-blue-600 text-2xl mr-4"></i>
+              <span class="font-medium">Email:</span>
+              <a
+                href="mailto:asserhasan80@gmail.com
+"
+                class="ml-2 hover:text-blue-600 transition duration-300"
+                >asserhasan80@gmail.com
+              </a>
+            </div>
+            <div class="flex items-start text-gray-700 text-lg">
+              <i
+                class="fas fa-map-marker-alt text-blue-600 text-2xl mr-4 mt-1"
+              ></i>
+              <span class="font-medium">Address:</span>
+              <span class="ml-2">Nile Center for Physiotherapy, Mansoura.</span>
+            </div>
+          </div>
+
+          <div class="flex gap-4 fade-in-up">
+            <a
+              href="tel:+01040905211"
+              class="flex items-center bg-blue-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-blue-700 transition duration-300 shadow-lg"
+            >
+              <i class="fas fa-phone-alt mr-2"></i> Call Now
+            </a>
+            <a
+              href="https://wa.me/01040905211"
+              target="_blank"
+              class="flex items-center bg-green-500 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-green-600 transition duration-300 shadow-lg"
+            >
+              <i class="fab fa-whatsapp mr-2"></i> WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <div class="bg-white p-8 rounded-2xl shadow-xl fade-in-up">
+          <h3 class="text-3xl font-bold text-gray-900 mb-6">
+            Send Us a Message
+          </h3>
+          <form
+            action="https://formspree.io/f/mgvnonok"
+            method="POST"
+            class="space-y-6"
+          >
+            <div>
+              <label
+                for="name"
+                class="block text-gray-700 text-sm font-medium mb-2"
+                >Your Name</label
+              >
+              <input
+                placeholder="Enter your name"
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="email"
+                class="block text-gray-700 text-sm font-medium mb-2"
+                >Your Email</label
+              >
+              <input
+                placeholder="Enter your email"
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="phone"
+                class="block text-gray-700 text-sm font-medium mb-2"
+                >Phone Number</label
+              >
+              <input
+                placeholder="Enter your phone number"
+                type="tel"
+                id="phone"
+                name="phone"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              />
+            </div>
+            <div>
+              <label
+                for="message"
+                class="block text-gray-700 text-sm font-medium mb-2"
+                >Your Message</label
+              >
+              <textarea
+                placeholder="Enter your message"
+                id="message"
+                name="message"
+                rows="5"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full bg-gradient-to-r from-blue-600 to-green-500 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-green-600 transition duration-300 ease-in-out shadow-lg hover:shadow-xl"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-6 text-center">
+        <div class="flex justify-center space-x-6 mb-8 fade-in-up">
+          <a
+            href="https://www.facebook.com/asser.hassan.56"
+            b
+            target="_blank"
+            class="text-gray-400 hover:text-blue-500 transition duration-300"
+          >
+            <i class="fab fa-facebook-f text-2xl"></i>
+          </a>
+          <a
+            href="https://www.instagram.com/asser_222002"
+            target="_blank"
+            class="text-gray-400 hover:text-blue-500 transition duration-300"
+          >
+            <i class="fab fa-instagram text-2xl"></i>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/asser-hasan-88234b387/"
+            target="_blank"
+            class="text-gray-400 hover:text-blue-500 transition duration-300"
+          >
+            <i class="fab fa-linkedin-in text-2xl"></i>
+          </a>
+        </div>
+        <p class="text-gray-400 text-sm fade-in-up">
+          &copy; 2025 Dr.Asser Hassan. All rights reserved.
+        </p>
+      </div>
+      <!-- Scroll to Top Button -->
+      <button
+        id="scrollToTopBtn"
+        class="fixed bottom-8 right-8 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 ease-in-out hidden"
+      >
+        <i class="fas fa-arrow-up text-xl"></i>
+      </button>
+    </footer>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
